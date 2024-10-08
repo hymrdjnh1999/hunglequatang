@@ -1,0 +1,131 @@
+.zalo-logo {
+  background-image: url("../images/zalo.png");
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.zalo-logo-section {
+  right: 85px;
+  bottom: 40px;
+}
+
+.mobile-phone-icon {
+  background-image: url("../images/whatsapp.png");
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+.mobile-phone-section {
+  right: 10px;
+  bottom: 35px;
+}
+
+.cate-item {
+  font-weight: 300 !important;
+  padding: 20px;
+  cursor: pointer;
+  min-width: 200px !important;
+  text-align: center;
+  transition: all 0.4s;
+}
+
+.cate-item:hover {
+  background-color: black;
+  color: white;
+}
+
+.cate-item span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+}
+
+.cate-item span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.4s;
+}
+
+.cate-item:hover span:after {
+  opacity: 1;
+  color: white;
+}
+.cate-item:hover span {
+  margin-left: -40px;
+}
+
+.cate-item--active span:after {
+  color: white;
+}
+
+.cate-item--active {
+  background-color: black;
+  color: white;
+}
+
+.product-items-real {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 15px;
+  width: 100%;
+}
+.product-items-cate {
+  min-width: calc(25% - 15px);
+  margin-right: 15px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.product-items-cate span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+}
+.product-items-cate:hover {
+  background-color: black;
+  color: white;
+}
+.product-items-cate:hover span {
+  /* right: px; */
+  transition: all 0.4s;
+}
+
+.product-items-cate:hover span::after {
+  color: white;
+  opacity: 1;
+  right: -20px;
+}
+.product-items-cate span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.4s;
+}
+.product-items-real {
+  min-width: 75%;
+}
+.product-items-real .product-items {
+  min-width: 33.33%;
+}
+
+.product-items {
+  border: 1px solid rgba(201, 198, 198, 0.862);
+  border-radius: 2px;
+  box-shadow: -3px 13px 21px -13px rgba(51, 42, 42, 0.76);
+  -webkit-box-shadow: -3px 13px 21px -13px rgba(51, 42, 42, 0.76);
+  -moz-box-shadow: -3px 13px 21px -13px rgba(51, 42, 42, 0.76);
+}
