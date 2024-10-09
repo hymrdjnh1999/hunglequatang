@@ -122,7 +122,12 @@ setTimeout(() => {
 const genAllCategories = () => {
   Object.values(productList).forEach(renderCategories);
 };
-const onClickCategory = (cate) => {
+const onClickCategory = (cate, key) => {
+  const classActive = "cate-item--active";
+  const activeCate = document.querySelector(`.${classActive}`);
+  activeCate.classList.remove(classActive);
+  const selectEl = document.querySelector(`#${key}`);
+  selectEl.classList.add(classActive);
   if (cate === "all") {
     return genAllCategories();
   }
