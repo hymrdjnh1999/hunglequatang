@@ -166,3 +166,11 @@
 .product-items:hover .product-content {
   color: rgba(255, 225, 93, 0.76);
 }
+
+.cant-select {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
