@@ -47,7 +47,9 @@ const medals = [
 ];
 const flags = [
   {
-    imageURL: ["./assets/images/flags/khung-bang-khen-a3/khung-bang-khen-a3.jpg"],
+    imageURL: [
+      "./assets/images/flags/khung-bang-khen-a3/khung-bang-khen-a3.jpg",
+    ],
     productName: "Khung bằng khen A3",
     productPrice: "60000",
   },
@@ -78,8 +80,11 @@ const renderCategories = (category) => {
   const { contentKey, data, key } = category;
   const productHtml = data.map(renderProductList).join("");
   const contentData = document.querySelector(`#${contentKey}`);
+  contentData.innerHTML = "";
   if (productHtml) {
     contentData.innerHTML = productHtml;
+    document.querySelector(`#${key}`).classList.remove("d-none");
+
     return;
   }
   document.querySelector(`#${key}`).classList.add("d-none");
@@ -111,5 +116,21 @@ const formatNumber = (number) => {
   return parseInt(number).toLocaleString("en-US").replace(/,/g, ".") + " đ";
 };
 setTimeout(() => {
-  Object.values(productList).forEach(renderCategories);
+  genAllCategories();
 }, 200);
+
+const genAllCategories = () => {
+  Object.values(productList).forEach(renderCategories);
+};
+const onClickCategory = (cate) => {
+  if (cate === "all") {
+    return genAllCategories();
+  }
+  Object.keys(productList).forEach((itemKey) => {
+    if (itemKey !== cate) {
+      document.querySelector(`#${itemKey}`).classList.add("d-none");
+    }
+  });
+
+  renderCategories(productList[cate]);
+};
