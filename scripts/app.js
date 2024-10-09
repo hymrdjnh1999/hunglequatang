@@ -31,8 +31,27 @@ const cups = [
     productPrice: "",
   },
 ];
-const memories = [];
-const medals = [];
+const memories = [
+  {
+    imageURL: ["./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg"],
+    productName: "Cúp pha lê hình trụ ngôi sao",
+    productPrice: "130000",
+  },
+];
+const medals = [
+  {
+    imageURL: ["./assets/images/medals/huy-chuong1/huy-chuong-cac-loai-1.webp"],
+    productName: "Huy chương các loại",
+    productPrice: "",
+  },
+];
+const flags = [
+  {
+    imageURL: ["./assets/images/flags/khung-bang-khen-a3/khung-bang-khen-a3.jpg"],
+    productName: "Khung bằng khen A3",
+    productPrice: "60000",
+  },
+];
 const productList = {
   cups: {
     key: "cups",
@@ -49,14 +68,21 @@ const productList = {
     contentKey: "medals-content",
     data: medals,
   },
+  flags: {
+    key: "flags",
+    contentKey: "flags-content",
+    data: flags,
+  },
 };
 const renderCategories = (category) => {
-  const { contentKey, data } = category;
+  const { contentKey, data, key } = category;
   const productHtml = data.map(renderProductList).join("");
   const contentData = document.querySelector(`#${contentKey}`);
   if (productHtml) {
     contentData.innerHTML = productHtml;
+    return;
   }
+  document.querySelector(`#${key}`).classList.add("d-none");
 };
 const renderProductList = (product) => {
   const { imageURL, productName, productPrice } = product;

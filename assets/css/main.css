@@ -6,8 +6,8 @@
 }
 
 .zalo-logo-section {
-  right: 85px;
-  bottom: 40px;
+  right: 20px;
+  bottom: 100px;
 }
 
 .mobile-phone-icon {
@@ -135,7 +135,7 @@
 /* PRODUCT LIST START */
 .product-img {
   display: block;
-  height: 350px;
+  height: 300px;
   width: 100%;
 }
 
