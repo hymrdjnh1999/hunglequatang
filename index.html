@@ -29,7 +29,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body class="position-relative">
+  <body class="position-relative main-body d-flex flex-column">
     <header class="bg-dark bg-gradient text-light">
       <div
         class="container d-flex justify-content-between p-3 align-items-center"
@@ -52,7 +52,7 @@
         </div>
       </div>
     </header>
-    <main class="container">
+    <main class="container mb-5">
       <!-- START CATEGORY -->
       <div class="category-section mt-5">
         <div class="d-flex gap-2 justify-content-around">
@@ -97,28 +97,32 @@
       <!-- START PRODUCT -->
       <div class="product container mt-5">
         <div class="product-list d-flex" id="cups">
+          <div class="product-items-real" id="cups-content"></div>
           <div class="product-items-cate">
             <span class="h1">CÚP</span>
           </div>
-          <div class="product-items-real" id="cups-content"></div>
+          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
         <div class="product-list d-flex mt-5" id="memories">
+          <div class="product-items-real" id="memories-content"></div>
           <div class="product-items-cate">
             <span class="h1">Kỷ Niệm</span>
           </div>
-          <div class="product-items-real" id="memories-content"></div>
+          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
         <div class="product-list d-flex mt-5" id="medals">
+          <div class="product-items-real" id="medals-content"></div>
           <div class="product-items-cate">
             <span class="h1">Huy Chương</span>
           </div>
-          <div class="product-items-real" id="medals-content"></div>
+          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
         <div class="product-list d-flex mt-5" id="flags">
+          <div class="product-items-real" id="flags-content"></div>
           <div class="product-items-cate">
             <span class="h1">Cơ lưu niệm các loại</span>
           </div>
-          <div class="product-items-real" id="flags-content"></div>
+          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
       </div>
       <!-- END PRODUCT -->
@@ -138,7 +142,46 @@
       </div>
       <!-- END CONTACT INFO -->
     </main>
-    <footer></footer>
+    <footer class="bg-dark bg-gradient text-light">
+      <div
+        class="container benifits-section d-flex justify-contents-around align-items-center py-4"
+      >
+        <div class="benefit-item d-flex">
+          <img class="d-block" src="./assets/images/fs-1.svg" alt="free ship" />
+          <div class="benefit-content d-flex flex-column ml-2">
+            <span class="benefit-title h2"> Miễn phí giao hàng </span>
+            <span class="benefit-desc h4">
+              Miễn phí vận chuyển đơn hàng từ 1.500.000 vnđ
+            </span>
+          </div>
+        </div>
+        <div class="benefit-item d-flex">
+          <img class="d-block" src="./assets/images/fs-2.svg" alt="free ship" />
+          <div class="benefit-content d-flex flex-column ml-2">
+            <span class="benefit-title h2"> Hỗ trợ đổi trả hàng </span>
+            <span class="benefit-desc h4">
+              Sản phẩm được đổi trả trong vòng 07 ngày
+            </span>
+          </div>
+        </div>
+        <div class="benefit-item d-flex">
+          <img class="d-block" src="./assets/images/fs-3.svg" alt="free ship" />
+          <div class="benefit-content d-flex flex-column ml-2">
+            <span class="benefit-title h2"> Đặt hàng ngay </span>
+            <span class="benefit-desc h4">
+              Hotline đặt hàng nhanh: 0913.56.55.81
+            </span>
+          </div>
+        </div>
+        <div class="benefit-item d-flex">
+          <img class="d-block" src="./assets/images/fs-4.svg" alt="free ship" />
+          <div class="benefit-content d-flex flex-column ml-2">
+            <span class="benefit-title h2"> Tư vấn hỗ trợ </span>
+            <span class="benefit-desc h4"> Thứ 2 - Thứ 7: 8h00 - 20h30 </span>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="./scripts/app.js"></script>
   </body>
 </html>

@@ -7,7 +7,7 @@
 
 .zalo-logo-section {
   right: 85px;
-  bottom: 40px;
+  bottom: 110px;
 }
 
 .mobile-phone-icon {
@@ -19,7 +19,7 @@
 
 .mobile-phone-section {
   right: 10px;
-  bottom: 35px;
+  bottom: 105px;
 }
 
 .cate-item {
@@ -173,4 +173,66 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.main-body {
+  min-height: 100vh;
+}
+
+.main-body main {
+  flex: 1;
+}
+
+.benefit-content {
+  margin-left: 10px;
+}
+
+.category-section {
+  overflow-x: auto;
+}
+
+@media (max-width: 1024px) {
+  .product-items-real .product-items {
+    min-width: 50%;
+  }
+  .product-items-cate {
+    display: none;
+  }
+  .product-list .xemthem {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  footer div.benifits-section .benefit-item {
+    margin-bottom: 15px;
+    padding: 0 15px;
+  }
+  footer div.benifits-section {
+    flex-direction: column !important;
+    justify-content: start !important;
+    align-items: start !important;
+  }
+}
+
+@media (max-width: 739px) {
+  .product-items-real .product-items {
+    min-width: 100%;
+  }
+
+  .product-list .xemthem {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .logo-section,
+  .info-section,
+  .address-section {
+    flex: 1;
+  }
+}
+
+.logo-section h1 {
+  text-align: center;
 }
