@@ -187,11 +187,10 @@
   margin-left: 10px;
 }
 
-.category-section {
-  overflow-x: auto;
-}
-
 @media (max-width: 1024px) {
+  .category-section .category-section--wrap {
+    overflow-x: auto;
+  }
   .product-items-real .product-items {
     min-width: 50%;
   }
