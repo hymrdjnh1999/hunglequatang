@@ -274,8 +274,9 @@
   }
 }
 
-.logo-section h1 {
-  text-align: center;
+.logo-section img {
+  width: 60px;
+
 }
 
 .swiper {

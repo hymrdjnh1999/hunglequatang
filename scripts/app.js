@@ -79,19 +79,29 @@ const productList = {
 const renderCategories = (category, isClickAllCate = true) => {
   const { contentKey, data, key } = category;
   const productHtml = data
-    .map((data) => renderProductList(data, isClickAllCate))
+    .map((product, productIndex) =>
+      renderProductList({
+        product,
+        productIndex,
+        productKey: key,
+        isClickAllCate,
+      })
+    )
     .join("");
   const contentData = document.querySelector(`#${contentKey}`);
-
+  setTimeout(() => {
+    const productItems = document.querySelectorAll(".cate-items");
+    productItems.forEach(onClickProductDetail);
+  }, 200);
   contentData.className = "swiper-wrapper";
   const cateTitles = document.querySelectorAll(".cate-title");
   cateTitles.forEach((cate) => {
-    cate.className = "cate-title";
+    cate.className = "h3 cate-title category-separate pt-2";
   });
   if (!isClickAllCate) {
     contentData.className = "cate-product-clicked";
     cateTitles.forEach((cate) => {
-      cate.className = "cate-title d-none";
+      cate.className = "h3 cate-title category-separate pt-2 d-none";
     });
   }
   contentData.innerHTML = "";
@@ -110,11 +120,16 @@ const renderCategories = (category, isClickAllCate = true) => {
   }
   document.querySelector(`#${key}`).classList.add("d-none");
 };
-const renderProductList = (product, isClickAllCate = true) => {
+const renderProductList = (data) => {
+  const { product, productKey, isClickAllCate, productIndex } = data;
   const { imageURL, productName, productPrice } = product;
-  return `<div class=" ${
+  return `<div data-product='${JSON.stringify({
+    product,
+    productIndex,
+    productKey,
+  })}' class=" ${
     !isClickAllCate ? "cate-clicked-product-item" : "swiper-slide"
-  } d-flex flex-column">
+  } d-flex flex-column cate-items">
   <div class="product-img-section p-4 animate__animated animate__flipInX">
     <img
       class="product-img"
@@ -130,6 +145,26 @@ const renderProductList = (product, isClickAllCate = true) => {
     productPrice
   )}</div>
 </div>`;
+};
+
+const onClickProductDetail = (item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault();
+    const productData = JSON.parse(item.getAttribute("data-product"));
+    const { product, productIndex, productKey } = productData;
+    console.log(productData, "productData");
+    localStorage.removeItem("productList");
+    localStorage.setItem("productList", JSON.stringify(productList));
+    localStorage.removeItem("selectProduct");
+    localStorage.setItem(
+      "selectProduct",
+      JSON.stringify({
+        product,
+        productIndex,
+        productKey,
+      })
+    );
+  });
 };
 
 const formatNumber = (number) => {
@@ -213,3 +248,8 @@ function getCurrentBreakpoint() {
   }
 }
 window.addEventListener("resize", settingSwipper);
+
+const onClickLogo = () => {
+  console.log("logo clicked")
+  window.location.href = "/";
+};
