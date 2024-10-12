@@ -199,7 +199,8 @@ const onClickCategory = (cate, key) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const rootURL = window.location.hostname + window.location.pathname;
+  const rootURL =
+    window.location.hostname + "/" + window.location.pathname?.split("/")[1];
   localStorage.removeItem("rootURL");
   localStorage.setItem("rootURL", rootURL);
   settingSwipper();
