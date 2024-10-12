@@ -198,7 +198,12 @@ const onClickCategory = (cate, key) => {
   renderCategories(productList[cate], false);
 };
 
-document.addEventListener("DOMContentLoaded", settingSwipper);
+document.addEventListener("DOMContentLoaded", () => {
+  const rootURL = window.location.hostname + window.location.pathname;
+  localStorage.removeItem("rootURL");
+  localStorage.setItem("rootURL", rootURL);
+  settingSwipper();
+});
 
 function settingSwipper() {
   const currentBreakpoint = getCurrentBreakpoint();
@@ -250,6 +255,5 @@ function getCurrentBreakpoint() {
 window.addEventListener("resize", settingSwipper);
 
 const onClickLogo = () => {
-  console.log("logo clicked")
-  window.location.href = "/";
+  window.location.href = localStorage.getItem("rootURL");
 };
