@@ -152,7 +152,6 @@ const onClickProductDetail = (item) => {
     event.preventDefault();
     const productData = JSON.parse(item.getAttribute("data-product"));
     const { product, productIndex, productKey } = productData;
-    console.log(productData, "productData");
     localStorage.removeItem("productList");
     localStorage.setItem("productList", JSON.stringify(productList));
     localStorage.removeItem("selectProduct");
@@ -164,6 +163,11 @@ const onClickProductDetail = (item) => {
         productKey,
       })
     );
+    let href = "/detail.html";
+    if (localStorage.getItem("rootURL") !== "/") {
+      href = localStorage.getItem("rootURL") + "/detail.html";
+    }
+    window.location.href = href;
   });
 };
 
