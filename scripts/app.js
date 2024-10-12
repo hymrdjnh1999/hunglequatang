@@ -58,7 +58,7 @@ const productList = {
   cups: {
     key: "cups",
     contentKey: "cups-content",
-    data: cups,
+    data: [...cups, ...cups],
   },
   memories: {
     key: "memories",
@@ -76,22 +76,45 @@ const productList = {
     data: flags,
   },
 };
-const renderCategories = (category) => {
+const renderCategories = (category, isClickAllCate = true) => {
   const { contentKey, data, key } = category;
-  const productHtml = data.map(renderProductList).join("");
+  const productHtml = data
+    .map((data) => renderProductList(data, isClickAllCate))
+    .join("");
   const contentData = document.querySelector(`#${contentKey}`);
+
+  contentData.className = "swiper-wrapper";
+  const cateTitles = document.querySelectorAll(".cate-title");
+  cateTitles.forEach((cate) => {
+    cate.className = "cate-title";
+  });
+  if (!isClickAllCate) {
+    contentData.className = "cate-product-clicked";
+    cateTitles.forEach((cate) => {
+      cate.className = "cate-title d-none";
+    });
+  }
   contentData.innerHTML = "";
   if (productHtml) {
     contentData.innerHTML = productHtml;
-    document.querySelector(`#${key}`).classList.remove("d-none");
-
+    const contentEl = document.querySelector(`#${key}`);
+    contentEl.classList.remove("d-none");
+    contentEl.className = "swiper";
+    if (!isClickAllCate) {
+      contentEl.className = "";
+    }
+    if (isClickAllCate) {
+      setTimeout(settingSwipper, 100);
+    }
     return;
   }
   document.querySelector(`#${key}`).classList.add("d-none");
 };
-const renderProductList = (product) => {
+const renderProductList = (product, isClickAllCate = true) => {
   const { imageURL, productName, productPrice } = product;
-  return `<div class="product-items d-flex flex-column">
+  return `<div class=" ${
+    !isClickAllCate ? "cate-clicked-product-item" : "swiper-slide"
+  } d-flex flex-column">
   <div class="product-img-section p-4 animate__animated animate__flipInX">
     <img
       class="product-img"
@@ -120,7 +143,7 @@ setTimeout(() => {
 }, 200);
 
 const genAllCategories = () => {
-  Object.values(productList).forEach(renderCategories);
+  Object.values(productList).forEach((data) => renderCategories(data, true));
 };
 const onClickCategory = (cate, key) => {
   const classActive = "cate-item--active";
@@ -137,5 +160,56 @@ const onClickCategory = (cate, key) => {
     }
   });
 
-  renderCategories(productList[cate]);
+  renderCategories(productList[cate], false);
 };
+
+document.addEventListener("DOMContentLoaded", settingSwipper);
+
+function settingSwipper() {
+  const currentBreakpoint = getCurrentBreakpoint();
+  const mapping = {
+    mobile: 1,
+    tablet: 3,
+    desktop: 4,
+    largeDesktop: 5,
+  };
+
+  var swiper = new Swiper(".swiper", {
+    direction: "horizontal",
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    slidesPerView: mapping[currentBreakpoint],
+    slidesPerGroup: 1,
+    spaceBetween: 10,
+    pagination: {
+      el: ".swiper-pagination",
+      type: "progressbar",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+}
+
+const breakpoints = {
+  mobile: "0px",
+  tablet: "768px",
+  desktop: "1024px",
+  largeDesktop: "1200px",
+};
+
+function getCurrentBreakpoint() {
+  if (window.matchMedia(`(min-width: ${breakpoints.largeDesktop})`).matches) {
+    return "largeDesktop";
+  } else if (window.matchMedia(`(min-width: ${breakpoints.desktop})`).matches) {
+    return "desktop";
+  } else if (window.matchMedia(`(min-width: ${breakpoints.tablet})`).matches) {
+    return "tablet";
+  } else {
+    return "mobile";
+  }
+}
+window.addEventListener("resize", settingSwipper);

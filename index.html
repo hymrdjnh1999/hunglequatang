@@ -28,6 +28,10 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
   <body class="position-relative main-body d-flex flex-column">
     <header class="bg-dark bg-gradient text-light">
@@ -95,34 +99,42 @@
       </div>
       <!-- END CATEGORY -->
       <!-- START PRODUCT -->
-      <div class="product container mt-5">
-        <div class="product-list d-flex" id="cups">
-          <div class="product-items-real" id="cups-content"></div>
-          <div class="product-items-cate">
-            <span class="h1">CÚP</span>
+      <div class="container mt-5">
+        <div class="">
+          <div class="h3 cate-title">Cúp</div>
+          <div class="swiper" id="cups">
+            <div class="swiper-wrapper" id="cups-content"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
-          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
-        <div class="product-list d-flex mt-5" id="memories">
-          <div class="product-items-real" id="memories-content"></div>
-          <div class="product-items-cate">
-            <span class="h1">Kỷ Niệm</span>
+        <div class="">
+          <div class="h3 cate-title category-separate pt-2">Kỷ niệm chương</div>
+          <div class="swiper mt-5" id="memories">
+            <div class="swiper-wrapper" id="memories-content"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
-          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
-        <div class="product-list d-flex mt-5" id="medals">
-          <div class="product-items-real" id="medals-content"></div>
-          <div class="product-items-cate">
-            <span class="h1">Huy Chương</span>
+        <div class="">
+          <div class="h3 cate-title category-separate pt-2">Huy Chương</div>
+          <div class="swiper mt-5" id="medals">
+            <div class="swiper-wrapper" id="medals-content"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
-          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
-        <div class="product-list d-flex mt-5" id="flags">
-          <div class="product-items-real" id="flags-content"></div>
-          <div class="product-items-cate">
-            <span class="h1">Cơ lưu niệm các loại</span>
+        <div class="">
+          <div class="h3 cate-title category-separate pt-2">Cờ</div>
+          <div class="swiper mt-5" id="flags">
+            <div class="swiper-wrapper" id="flags-content"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
-          <div class="xemthem d-none text-center">Xem Thêm</div>
         </div>
       </div>
       <!-- END PRODUCT -->
@@ -182,6 +194,7 @@
         </div>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./scripts/app.js"></script>
   </body>
 </html>

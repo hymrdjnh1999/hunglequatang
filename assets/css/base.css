@@ -1,7 +1,6 @@
 :root {
   --white-color: #fff;
   --black-color: #000;
-  --text-color: #333;
   --border-color: #dbdbdb;
   --primary-color: #f42;
   --navbar-height: 32px;
@@ -9,6 +8,8 @@
   --margin-left-search: 12px;
   --star-gold-color: #ffce3d;
   --header__sort-bar-height: 46px;
+  --scrollbar-primary-color: #42d8f3;
+  --text-color: #ebc8c8;
 }
 
 * {
