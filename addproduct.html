@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sửa sản phẩm</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm sản phẩm</title>
+    <link rel="stylesheet" href="./assets/css/function.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Thêm sản phẩm {{category ? " cho " + category : ""}}</h1>
+      <button v-on:click="onClickBackButton" v-if="!!category">Quay lại</button>
+      <div v-if="!category">
+        <!-- Loop through each category in productList -->
+        <div
+          v-for="(categoryData, categoryKey) in productList"
+          :key="categoryKey"
+        >
+          <h2 class="category" v-on:click="clickCategory(categoryKey)">
+            {{ categoryKey }}
+          </h2>
+        </div>
+      </div>
+      <div class="add-form" v-if="!!category">
+        <form v-on:submit.prevent="submitForm">
+          <label for="productName">Tên sản phẩm</label>
+          <input
+            id="productName"
+            type="text"
+            v-model="newProduct.productName"
+            placeholder="Tên Sản phẩm"
+          />
+
+          <label for="productPrice">Giá sản phẩm</label>
+          <input
+            id="productPrice"
+            type="number"
+            v-model="newProduct.productPrice"
+            placeholder="Giá Sản phẩm"
+          />
+
+          <button>Thêm mới</button>
+        </form>
+      </div>
+    </div>
+
+    <style scoped>
+      .product-card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+      }
+
+      .product-image img {
+        max-width: 100px;
+        height: auto;
+        margin: 5px;
+      }
+    </style>
+
+    <script type="module" src="./scripts/addproduct.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
 </html>

@@ -1,0 +1,16 @@
+.category:hover {
+  text-decoration: underline;
+}
+.add-form {
+  margin-top: 30px;
+}
+.add-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-form form input,
+.add-form form button {
+  margin-bottom: 20px;
+  width: 200px;
+}
