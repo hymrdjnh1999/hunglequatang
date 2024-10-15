@@ -1,7 +1,7 @@
 import { MyData } from "./data.js";
 const myData = new MyData();
-const productList = myData.getProductList();
-export { productList };
+
+const productList = await myData.getMockProductList();
 const renderCategories = (category, isClickAllCate = true) => {
   const { contentKey, data, key } = category;
   const productHtml = data
@@ -20,6 +20,8 @@ const renderCategories = (category, isClickAllCate = true) => {
   }
   setTimeout(() => {
     const productItems = document.querySelectorAll(".product-items");
+    const categories = document.querySelectorAll(".cate-item");
+    categories.forEach(onClickCategory);
     productItems.forEach(onClickProductDetail);
   }, 200);
   contentData.className = "swiper-wrapper";
@@ -113,22 +115,27 @@ setTimeout(() => {
 const genAllCategories = () => {
   Object.values(productList).forEach((data) => renderCategories(data, true));
 };
-const onClickCategory = (cate, key) => {
-  const classActive = "cate-item--active";
-  const activeCate = document.querySelector(`.${classActive}`);
-  activeCate.classList.remove(classActive);
-  const selectEl = document.querySelector(`#${key}`);
-  selectEl.classList.add(classActive);
-  if (cate === "all") {
-    return genAllCategories();
-  }
-  Object.keys(productList).forEach((itemKey) => {
-    if (itemKey !== cate) {
-      document.querySelector(`#${itemKey}`).classList.add("d-none");
-    }
-  });
 
-  renderCategories(productList[cate], false);
+const onClickCategory = (item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault();
+    const { key, cate } = JSON.parse(item.getAttribute("data-source"));
+    const classActive = "cate-item--active";
+    const activeCate = document.querySelector(`.${classActive}`);
+    activeCate.classList.remove(classActive);
+    const selectEl = document.querySelector(`#${key}`);
+    selectEl.classList.add(classActive);
+    if (cate === "all") {
+      return genAllCategories();
+    }
+    Object.keys(productList).forEach((itemKey) => {
+      if (itemKey !== cate) {
+        document.querySelector(`#${itemKey}`).classList.add("d-none");
+      }
+    });
+
+    renderCategories(productList[cate], false);
+  });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
