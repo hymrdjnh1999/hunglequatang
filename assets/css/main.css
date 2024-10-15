@@ -169,8 +169,12 @@
   transform: skewY(390deg);
 }
 
+.product-content {
+  color: white;
+}
+
 .product-items:hover .product-content {
-  color: rgba(255, 225, 93, 0.76);
+  color: black
 }
 
 .cant-select {

@@ -1,5 +1,11 @@
 const cups = [
   {
+    /** imageURL: ảnh của sản phẩm 
+      => muốn hiển ảnh ở trang chủ hãy để ảnh đó lên đầu
+      => ví dụ như ở sản phẩm này ảnh: 
+      ./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg 
+      sẽ được hiển thị lên trang chủ 
+     */
     imageURL: [
       "./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg",
       "./assets/images/cups/cup-pha-le-canh-buom/cup-pha-le-canh-buom.webp",
@@ -8,8 +14,25 @@ const cups = [
       "./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg",
       "./assets/images/flags/khung-bang-khen-a3/khung-bang-khen-a3.jpg",
     ],
+    // Tên sản phẩm
     productName: "Cúp pha lê hình trụ ngôi sao",
+    // Giá sản phẩm
     productPrice: "130000",
+    // status là trạng thái => true là còn hàng, false là hết hàng
+    status: true,
+    // infomation: là thông tin của sản phẩm => mô tả về sản phẩm
+    infomation: {
+      info1: "Bề dày khung: 3.5cm",
+      info2: "Bản khung sâu: 1cm",
+      info3: "Kích thước: (21x30)cm",
+      info4:
+        "Chất liệu: Nhựa composite sản xuất theo công nghệ Hàn Quốc, chống mối mọt.",
+      info5: "Mặt trước: Khung có mặt mica dày 1ly(hoặc kính)",
+      info6:
+        "Mặt sau (hậu): MDF trắng 2 mặt chống mốc. Có thể thay đổi thành bề mặt mica(3rem) báo giá riêng",
+      info7:
+        "Hình thức: Khung có móc treo ngang, dọc. Khung để bàn có móc treo và chân trống để bàn báo giá riêng",
+    },
   },
   {
     imageURL: [
@@ -38,6 +61,7 @@ const cups = [
     productPrice: "",
   },
 ];
+// Sản phẩm: Kỷ Niệm Chương
 const memories = [
   {
     imageURL: ["./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg"],
@@ -45,6 +69,7 @@ const memories = [
     productPrice: "130000",
   },
 ];
+// Sản phẩm: Huy Chương
 const medals = [
   {
     imageURL: ["./assets/images/medals/huy-chuong1/huy-chuong-cac-loai-1.webp"],
@@ -52,6 +77,7 @@ const medals = [
     productPrice: "",
   },
 ];
+// Sản phẩm: Cờ
 const flags = [
   {
     imageURL: [
@@ -61,6 +87,7 @@ const flags = [
     productPrice: "60000",
   },
 ];
+
 const productList = {
   cups: {
     key: "cups",
