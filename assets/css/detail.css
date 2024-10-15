@@ -129,6 +129,12 @@ img {
     max-width: calc(25% - 10px);
   }
 }
+@media (min-width: 1367px) {
+  .product-items {
+    flex: 0 1 calc(20% - 10px);
+    max-width: calc(20% - 10px);
+  }
+}
 @media (max-width: 769px) and (min-width: 431px) {
   .product-items {
     flex: 0 1 calc(33.33% - 10px);
