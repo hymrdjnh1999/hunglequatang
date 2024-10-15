@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {});
-
 document.addEventListener("DOMContentLoaded", () => {
   const { product, productKey } = JSON.parse(
     localStorage.getItem("productSelect")
