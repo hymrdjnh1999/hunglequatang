@@ -121,9 +121,6 @@ img {
   .title {
     margin-top: 30px !important;
   }
-  .logo-section {
-    margin-right: 20px;
-  }
 }
 
 @media (max-width: 1366px) {
