@@ -2,7 +2,6 @@
   --white-color: #fff;
   --black-color: #000;
   --border-color: #dbdbdb;
-  --primary-color: #f42;
   --navbar-height: 32px;
   --header-height: 120px;
   --margin-left-search: 12px;
@@ -10,6 +9,7 @@
   --header__sort-bar-height: 46px;
   --scrollbar-primary-color: #42d8f3;
   --text-color: #ebc8c8;
+  --primary-color: rgb(0, 153, 255);
 }
 
 * {

@@ -6,6 +6,7 @@
     <title>Quà tặng Lê Hùng</title>
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/detail.css" />
 
     <link
       rel="stylesheet"
@@ -34,7 +35,7 @@
     />
   </head>
   <body class="position-relative main-body d-flex flex-column">
-    <header class="bg-dark bg-gradient text-light">
+    <header class="header-section bg-gradient text-light">
       <div
         class="container d-flex justify-content-between p-3 align-items-center"
       >
@@ -48,8 +49,9 @@
         </div>
         <div class="info-section m-0">
           <h3>
-            Hotline Hỗ trợ: <a href="tel:+84984869202">0984.869.202</a> hoặc
-            <a href="tel:+84984869202">0984.869.202</a>
+            Hotline Hỗ trợ:
+            <a class="text-white" href="tel:+84984869202">0984.869.202</a> hoặc
+            <a class="text-white" href="tel:+84984869202">0984.869.202</a>
           </h3>
         </div>
         <div class="address-section">
@@ -57,7 +59,54 @@
         </div>
       </div>
     </header>
-    <main class="container mb-5"></main>
+    <main class="container my-5">
+      <div class="d-flex content-wrapper">
+        <!-- START PRODUCT IMAGE -->
+        <div class="flex-1 content-item">
+          <div class="swiper galley">
+            <div class="swiper-wrapper" id="img-slides"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+          <div thumsSlider="" class="swiper galley-thums mt-2">
+            <div class="swiper-wrapper" id="img-slides-thums"></div>
+          </div>
+        </div>
+        <!-- END PRODUCT IMAGE -->
+        <div class="flex-1 content-item px-5">
+          <div class="h2">Khung bằng khen</div>
+          <div class="product-status">
+            Tình trạng: <span class="status text-success">Còn hàng</span>
+          </div>
+          <div class="price text-danger h2 mt-3">35.000 đ</div>
+          <div class="option-wrapper">
+            <div class="option">Bề dày khung: 3.5cm</div>
+            <div class="option">Bản khung sâu: 1cm</div>
+            <div class="option">Kích thước: (21x30)cm</div>
+            <div class="option">
+              Chất liệu: Nhựa composite sản xuất theo công nghệ Hàn Quốc, chống
+              mối mọt.
+            </div>
+            <div class="option">
+              Mặt trước: Khung có mặt mica dày 1ly(hoặc kính)
+            </div>
+            <div class="option">
+              Mặt sau (hậu): MDF trắng 2 mặt chống mốc. Có thể thay đổi thành bề
+              mặt mica(3rem) báo giá riêng
+            </div>
+            <div class="option">
+              Hình thức: Khung có móc treo ngang, dọc. Khung để bàn có móc treo
+              và chân trống để bàn báo giá riêng
+            </div>
+            <div class="option">Bề dày khung: 3.5cm</div>
+            <div class="option">Bề dày khung: 3.5cm</div>
+          </div>
+          <a class="buy-now-btn phone-mobile" href="tel:+84984869201">
+            Bấm vào đây để liên hệ mua ngay
+          </a>
+        </div>
+      </div>
+    </main>
     <footer class="bg-dark bg-gradient text-light">
       <div
         class="container benifits-section d-flex justify-contents-around align-items-center py-4"
@@ -99,7 +148,6 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./scripts/app.js"></script>
     <script src="./scripts/detail.js"></script>
   </body>
 </html>

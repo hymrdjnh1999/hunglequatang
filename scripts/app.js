@@ -1,6 +1,13 @@
 const cups = [
   {
-    imageURL: ["./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg"],
+    imageURL: [
+      "./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg",
+      "./assets/images/cups/cup-pha-le-canh-buom/cup-pha-le-canh-buom.webp",
+      "./assets/images/cups/cup-pha-le-vinh-danh/cup-pha-le-vinh-danh.jpg",
+      "./assets/images/cups/cup-pha-le-vinh-danh2/cup-pha-le-vinh-danh2.jpg",
+      "./assets/images/cups/cup-ngoi-sao/cup-ngoi-sao.jpg",
+      "./assets/images/flags/khung-bang-khen-a3/khung-bang-khen-a3.jpg",
+    ],
     productName: "Cúp pha lê hình trụ ngôi sao",
     productPrice: "130000",
   },
@@ -76,6 +83,20 @@ const productList = {
     data: flags,
   },
 };
+function setProductIds(productList) {
+  let productCounter = 0;
+
+  Object.keys(productList).forEach((category) => {
+    productList[category].data = productList[category].data.map((product) => {
+      productCounter += 1;
+      const randomPart = Math.random().toString(36).substring(2, 8);
+      product.productId = `${category}-${randomPart}-${productCounter}`;
+      return product;
+    });
+  });
+}
+
+setProductIds(productList);
 const renderCategories = (category, isClickAllCate = true) => {
   const { contentKey, data, key } = category;
   const productHtml = data
@@ -90,7 +111,7 @@ const renderCategories = (category, isClickAllCate = true) => {
     .join("");
   const contentData = document.querySelector(`#${contentKey}`);
   setTimeout(() => {
-    const productItems = document.querySelectorAll(".cate-items");
+    const productItems = document.querySelectorAll(".product-items");
     productItems.forEach(onClickProductDetail);
   }, 200);
   contentData.className = "swiper-wrapper";
@@ -129,7 +150,7 @@ const renderProductList = (data) => {
     productKey,
   })}' class=" ${
     !isClickAllCate ? "cate-clicked-product-item" : "swiper-slide"
-  } d-flex flex-column cate-items">
+  } d-flex flex-column product-items">
   <div class="product-img-section p-4 animate__animated animate__flipInX">
     <img
       class="product-img"
@@ -154,9 +175,11 @@ const onClickProductDetail = (item) => {
     const { product, productIndex, productKey } = productData;
     localStorage.removeItem("productList");
     localStorage.setItem("productList", JSON.stringify(productList));
-    localStorage.removeItem("selectProduct");
+    localStorage.removeItem("productSelect");
+    localStorage.removeItem("productList");
+    localStorage.setItem("productList", JSON.stringify(productList));
     localStorage.setItem(
-      "selectProduct",
+      "productSelect",
       JSON.stringify({
         product,
         productIndex,
@@ -260,7 +283,10 @@ function getCurrentBreakpoint() {
     return "mobile";
   }
 }
-window.addEventListener("resize", settingSwipper);
+window.addEventListener("resize", () => {
+  console.log("screen resize");
+  settingSwipper();
+});
 
 const onClickLogo = () => {
   window.location.href = localStorage.getItem("rootURL");
