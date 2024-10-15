@@ -88,7 +88,7 @@ const flags = [
   },
 ];
 
-const productList = {
+let productList = {
   cups: {
     key: "cups",
     contentKey: "cups-content",
@@ -111,19 +111,22 @@ const productList = {
   },
 };
 function setProductIds(productList) {
-  let productCounter = 0;
-
-  Object.keys(productList).forEach((category) => {
-    productList[category].data = productList[category].data.map((product) => {
-      productCounter += 1;
-      const randomPart = Math.random().toString(36).substring(2, 8);
-      product.productId = `${category}-${randomPart}-${productCounter}`;
-      return product;
-    });
-  });
+  const newProductList = { ...productList };
+  for (const category in productList) {
+    let data = [];
+    if (Object.hasOwnProperty.call(productList, category)) {
+      const element = productList[category];
+      data = element.data.map((x, idx) => ({
+        ...x,
+        productId: `${category}-${idx}`,
+      }));
+      newProductList[category] = { ...newProductList[category], data };
+    }
+  }
+  console.log(newProductList);
+  return newProductList;
 }
 
-setProductIds(productList);
 const renderCategories = (category, isClickAllCate = true) => {
   const { contentKey, data, key } = category;
   const productHtml = data
@@ -200,11 +203,9 @@ const onClickProductDetail = (item) => {
     event.preventDefault();
     const productData = JSON.parse(item.getAttribute("data-product"));
     const { product, productIndex, productKey } = productData;
-    localStorage.removeItem("productList");
-    localStorage.setItem("productList", JSON.stringify(productList));
+    localStorage.removeItem("productListOrigin");
+    localStorage.setItem("productListOrigin", JSON.stringify(productList));
     localStorage.removeItem("productSelect");
-    localStorage.removeItem("productList");
-    localStorage.setItem("productList", JSON.stringify(productList));
     localStorage.setItem(
       "productSelect",
       JSON.stringify({
@@ -228,6 +229,7 @@ const formatNumber = (number) => {
   return parseInt(number).toLocaleString("en-US").replace(/,/g, ".") + " đ";
 };
 setTimeout(() => {
+  productList = setProductIds(productList);
   genAllCategories();
 }, 200);
 

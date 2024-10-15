@@ -4,22 +4,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const { product, productKey } = JSON.parse(
     localStorage.getItem("productSelect")
   );
-  const productListOrigin = JSON.parse(localStorage.getItem("productList"));
+  const productListOrigin = JSON.parse(
+    localStorage.getItem("productListOrigin")
+  );
+  console.log(product);
+  console.log(productListOrigin);
   const productListByKey = productListOrigin[productKey].data.filter(
     (x) => x.productId !== product.productId
   );
   settingProductInfo(product);
-  settingProductNext(productListByKey);
+  settingProductNext(productListByKey, productKey);
+  setTimeout(() => {
+    const productItems = document.querySelectorAll(".product-items");
+    productItems.forEach(onClickProductDetail);
+  }, 200);
   settingSwipper();
 });
 
-const settingProductNext = (productlist) => {
+const settingProductNext = (productlist, productKey) => {
   const productNextSection = document.querySelector("#product-next");
 
   const productListByKeyHTML = productlist
     .map((product) =>
       renderProductNext({
         product,
+        productKey,
       })
     )
     .join("");
@@ -28,8 +37,8 @@ const settingProductNext = (productlist) => {
 };
 
 const renderProductNext = (data) => {
-  const { product } = data;
-  const { imageURL, productName, productPrice, productKey } = product;
+  const { product, productKey } = data;
+  const { imageURL, productName, productPrice } = product;
   return `<div data-product='${JSON.stringify({
     product,
     productKey,
@@ -52,7 +61,6 @@ const renderProductNext = (data) => {
 };
 
 const settingProductInfo = (product) => {
-  console.log(product);
   const { imageURL, productName, productPrice, infomation, status } = product;
   const productImgSection = document.querySelector("#img-slides");
   const productImgThumsSection = document.querySelector("#img-slides-thums");
@@ -150,31 +158,6 @@ const onClickLogo = () => {
   window.location.href = localStorage.getItem("rootURL");
 };
 
-const renderProductList = (data) => {
-  const { product, productKey, isClickAllCate, productIndex } = data;
-  const { imageURL, productName, productPrice } = product;
-  return `<div data-product='${JSON.stringify({
-    product,
-    productIndex,
-    productKey,
-  })}'  d-flex flex-column product-items">
-    <div class="product-img-section p-4 animate__animated animate__flipInX">
-      <img
-        class="product-img"
-        loading="lazy"
-        src="${imageURL[0]}"
-        alt="${productName}"
-      />
-    </div>
-    <div class="product-content mt-2 px-2 h3 text-center">
-      ${productName}
-    </div>
-    <div class="product-price text-danger h3 text-center mt-2 pb-3">${formatNumber(
-      productPrice
-    )}</div>
-  </div>`;
-};
-
 const formatNumber = (number) => {
   if (!number) {
     return "Liên Hệ";
@@ -186,17 +169,12 @@ const onClickProductDetail = (item) => {
   item.addEventListener("click", (event) => {
     event.preventDefault();
     const productData = JSON.parse(item.getAttribute("data-product"));
-    const { product, productIndex, productKey } = productData;
-    localStorage.removeItem("productList");
-    localStorage.setItem("productList", JSON.stringify(productList));
+    const { product, productKey } = productData;
     localStorage.removeItem("productSelect");
-    localStorage.removeItem("productList");
-    localStorage.setItem("productList", JSON.stringify(productList));
     localStorage.setItem(
       "productSelect",
       JSON.stringify({
         product,
-        productIndex,
         productKey,
       })
     );
