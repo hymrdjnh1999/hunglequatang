@@ -237,6 +237,15 @@
   }
 }
 
+@media (min-width: 820px) and (max-width: 1023px) {
+  .product-items {
+    height: 300px !important;
+  }
+  .product-img {
+    height: 130px;
+  }
+}
+
 @media (max-width: 739px) {
   .product-items-real .product-items {
     min-width: 100%;
@@ -272,7 +281,6 @@
   .product-img {
     height: 130px;
   }
-
 }
 
 @media (min-width: 740px) and (max-width: 820px) {
