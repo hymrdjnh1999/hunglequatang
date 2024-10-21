@@ -288,6 +288,7 @@ const onClickCategory = (item) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#logo-img").addEventListener("click", onClickLogo);
   let rootURL = "/" + window.location.pathname?.split("/")[1];
   if (["127.0.0.1", "localhost"].includes(window.location.host.split(":")[0])) {
     rootURL = "/";

@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productListOrigin = JSON.parse(
     localStorage.getItem("productListOrigin")
   );
-  console.log(product);
-  console.log(productListOrigin);
+  document.querySelector("#logo-img").addEventListener("click", onClickLogo);
   const productListByKey = productListOrigin[productKey].data.filter(
     (x) => x.productId !== product.productId
   );

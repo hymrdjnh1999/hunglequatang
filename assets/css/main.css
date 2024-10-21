@@ -174,7 +174,7 @@
 }
 
 .product-items:hover .product-content {
-  color: black
+  color: black;
 }
 
 .cant-select {
@@ -248,14 +248,12 @@
     align-items: center;
     cursor: pointer;
   }
-  .logo-section,
-  .info-section,
-  .address-section {
-    flex: 1;
+  div.info-section {
+    margin: 0 10px 0 10px !important;
   }
   .cate-product-clicked .cate-clicked-product-item {
-    flex: 1 1 48%;
-    max-width: 48%;
+    flex: 1 1 33.33%;
+    max-width: 33.33%;
     box-sizing: border-box;
     margin-bottom: 10px;
   }
@@ -263,8 +261,8 @@
 
 @media (max-width: 430px) {
   .cate-product-clicked .cate-clicked-product-item {
-    flex: 1 1 98%;
-    max-width: 98%;
+    flex: 1 1 48%;
+    max-width: 48%;
     box-sizing: border-box;
     margin-bottom: 10px;
   }
