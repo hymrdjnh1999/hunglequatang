@@ -266,6 +266,13 @@
     box-sizing: border-box;
     margin-bottom: 10px;
   }
+  .product-items {
+    height: 250px !important;
+  }
+  .product-img {
+    height: 130px;
+  }
+
 }
 
 @media (min-width: 740px) and (max-width: 820px) {

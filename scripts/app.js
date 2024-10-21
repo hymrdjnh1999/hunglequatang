@@ -172,7 +172,7 @@ const renderCategories = (category, isClickAllCate = true) => {
     const categories = document.querySelectorAll(".cate-item");
     categories.forEach(onClickCategory);
     productItems.forEach(onClickProductDetail);
-  }, 200);
+  }, 100);
   contentData.className = "swiper-wrapper";
   const cateTitles = document.querySelectorAll(".cate-title");
   cateTitles.forEach((cate) => {
@@ -194,7 +194,7 @@ const renderCategories = (category, isClickAllCate = true) => {
       contentEl.className = "";
     }
     if (isClickAllCate) {
-      setTimeout(settingSwipper, 100);
+      settingSwipper();
     }
     return;
   }
@@ -229,7 +229,6 @@ const renderProductList = (data) => {
 
 const onClickProductDetail = (item) => {
   item.addEventListener("click", (event) => {
-    event.preventDefault();
     const productData = JSON.parse(item.getAttribute("data-product"));
     const { product, productIndex, productKey } = productData;
     localStorage.removeItem("productListOrigin");
@@ -262,29 +261,41 @@ setTimeout(() => {
 }, 200);
 
 const genAllCategories = () => {
-  Object.values(productList).forEach((data) => renderCategories(data, true));
+  Object.values(productList).forEach((data) => {
+    const { contentKey } = data;
+    document.querySelector(`#${contentKey}`).innerHTML = "";
+    renderCategories(data, true);
+  });
+};
+
+const handleClickCategory = (event, item) => {
+  const { key, cate } = JSON.parse(item.getAttribute("data-source"));
+  const classActive = "cate-item--active";
+  const activeCate = document.querySelector(`.${classActive}`);
+  activeCate.classList.remove(classActive);
+  const selectEl = document.querySelector(`#${key}`);
+  selectEl.classList.add(classActive);
+  if (cate === "all") {
+    location.reload(true)
+    return;
+  }
+  Object.keys(productList).forEach((itemKey) => {
+    const { contentKey } = productList[itemKey];
+    document.querySelector(`#${contentKey}`).innerHTML = "";
+    if (itemKey !== cate) {
+      document.querySelector(`#${itemKey}`).classList.add("d-none");
+    }
+  });
+
+  renderCategories(productList[cate], false);
 };
 
 const onClickCategory = (item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const { key, cate } = JSON.parse(item.getAttribute("data-source"));
-    const classActive = "cate-item--active";
-    const activeCate = document.querySelector(`.${classActive}`);
-    activeCate.classList.remove(classActive);
-    const selectEl = document.querySelector(`#${key}`);
-    selectEl.classList.add(classActive);
-    if (cate === "all") {
-      return genAllCategories();
-    }
-    Object.keys(productList).forEach((itemKey) => {
-      if (itemKey !== cate) {
-        document.querySelector(`#${itemKey}`).classList.add("d-none");
-      }
-    });
+  item.removeEventListener("click", (event) =>
+    handleClickCategory(event, item)
+  );
 
-    renderCategories(productList[cate], false);
-  });
+  item.addEventListener("click", (event) => handleClickCategory(event, item));
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -298,8 +309,9 @@ document.addEventListener("DOMContentLoaded", () => {
   localStorage.setItem("rootURL", rootURL);
   settingSwipper();
 });
-
+var swiper = null;
 function settingSwipper() {
+  swiper = null;
   const currentBreakpoint = getCurrentBreakpoint();
   const mapping = {
     mobile: 2,
@@ -308,11 +320,10 @@ function settingSwipper() {
     largeDesktop: 5,
   };
 
-  var swiper = new Swiper(".swiper", {
+  swiper = new Swiper(".swiper", {
     direction: "horizontal",
     autoplay: {
       delay: 2500,
-      disableOnInteraction: false,
     },
     slidesPerView: mapping[currentBreakpoint],
     slidesPerGroup: 1,
@@ -347,7 +358,6 @@ function getCurrentBreakpoint() {
   }
 }
 window.addEventListener("resize", () => {
-  console.log("screen resize");
   settingSwipper();
 });
 
