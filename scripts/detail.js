@@ -39,7 +39,7 @@ const renderProductNext = (data) => {
   return `<div data-product='${JSON.stringify({
     product,
     productKey,
-  })}' class=" d-flex flex-column product-items">
+  })}' class=" d-flex flex-column product-items product-all">
       <div class="product-img-section p-4 animate__animated animate__flipInX">
         <img
           class="product-img"

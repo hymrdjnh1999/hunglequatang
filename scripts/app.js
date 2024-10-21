@@ -208,7 +208,9 @@ const renderProductList = (data) => {
     productIndex,
     productKey,
   })}' class=" ${
-    !isClickAllCate ? "cate-clicked-product-item" : "swiper-slide"
+    !isClickAllCate
+      ? "cate-clicked-product-item product-all"
+      : "swiper-slide product-all"
   } d-flex flex-column product-items">
   <div class="product-img-section p-4 animate__animated animate__flipInX">
     <img
@@ -276,7 +278,7 @@ const handleClickCategory = (event, item) => {
   const selectEl = document.querySelector(`#${key}`);
   selectEl.classList.add(classActive);
   if (cate === "all") {
-    location.reload(true)
+    location.reload(true);
     return;
   }
   Object.keys(productList).forEach((itemKey) => {
