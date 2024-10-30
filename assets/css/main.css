@@ -296,6 +296,14 @@
   .product-all .product-img {
     height: 130px!important;
   }
+
+  div.info-section {
+    min-width: 120px;
+  }
+
+  .address-section h3,.info-section h3{
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 740px) and (max-width: 819px) {
