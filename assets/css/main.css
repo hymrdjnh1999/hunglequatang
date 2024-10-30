@@ -301,6 +301,10 @@
     min-width: 120px;
   }
 
+  .info-section .info-title {
+    display: block;
+  }
+
   .address-section h3,.info-section h3{
     font-size: 12px;
   }
